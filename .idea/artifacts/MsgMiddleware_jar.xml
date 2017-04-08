@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MsgMiddleware:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MsgMiddleware_jar</output-path>
+    <root id="archive" name="MsgMiddleware.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="MsgMiddleware" />
+      <element id="extracted-dir" path="E:/apache-activemq-5.14.4/activemq-all-5.14.4.jar" path-in-jar="/" />
+      <element id="file-copy" path="E:/apache-activemq-5.14.4/activemq-all-5.14.4.jar" />
+    </root>
+  </artifact>
+</component>
