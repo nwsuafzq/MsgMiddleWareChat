@@ -16,15 +16,16 @@ public class MsgSender implements Runnable {
     private String user;
     private String password;
     private final String QUEUE;
-
+    private String nickName;
     private String sendAreaText;            /* 获取sendArea消息发送文本框中的信息 */
 
-    public MsgSender(String queue, String url, String user, String password, String sendAreaText) {
+    public MsgSender(String queue, String url, String user, String password, String sendAreaText, String nickName) {
         this.url = url;
         this.user = user;
         this.password = password;
         this.QUEUE = queue;
         this.sendAreaText = sendAreaText;
+        this.nickName = nickName;
     }
 
     @Override
@@ -39,16 +40,9 @@ public class MsgSender implements Runnable {
 
             connection.start();
 
-
             //while(true) {
 
-//            String sendtext = MsgMiddleWare.sendarea;
-//            System.out.println(sendtext);
 
-
-            System.out.println(sendAreaText);
-
-            //while (sendtext != null ) {
 
             session = connection.createSession(true,
                     Session.SESSION_TRANSACTED);
@@ -61,7 +55,7 @@ public class MsgSender implements Runnable {
             SimpleDateFormat dateTimeFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = dateTimeFormat.format(today);
 
-            outMessage.setText("----" + date + "----" + "\n" + "对方说: " + sendAreaText);
+            outMessage.setText("----" + date + "----" + "\n" + nickName + "说: " + sendAreaText);
 
 
             sender.send(outMessage);
@@ -71,23 +65,17 @@ public class MsgSender implements Runnable {
             sender.close();
             //  }
             connection.close();
-            // }
         } catch (JMSException e) {
             e.printStackTrace();
         } finally {
             try {
-
                 if (connection != null) {
                     connection.close();
-                }
-                if (session != null) {
-                    session.close();
                 }
             } catch (JMSException e) {
                 e.printStackTrace();
             }
         }
-
 //            if ((++messageCount) == 10) {
 //                // 发够十条消息退出
 //                break;

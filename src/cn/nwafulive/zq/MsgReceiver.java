@@ -47,16 +47,11 @@ public class MsgReceiver implements Runnable {
 
                 if (message instanceof TextMessage) {
                     TextMessage receiveMessage = (TextMessage) message;
-                    System.out.println("我是Receiver,收到消息如下: \r\n"
-                            + receiveMessage.getText());
+                   /* System.out.println("我是Receiver,收到消息如下: \r\n"
+                            + receiveMessage.getText());*/
 
                     String receiveMsg = receiveMessage.getText();
-                    //receiveArea.setLineWrap(true);
                     receiveArea.append(receiveMsg + "\r\n");
-
-//                    receiveArea.setLineWrap(true);        //激活自动换行功能
-//                    receiveArea.setWrapStyleWord(true);     // 激活断行不断字功能
-//                    receiveArea.setEditable(false);
 
                 } else {
                     session.commit();
